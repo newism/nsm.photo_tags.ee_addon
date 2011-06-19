@@ -3,7 +3,7 @@
 require PATH_THIRD.'nsm_interactive_gallery/config.php';
 
 /**
- * NSM Example Addon Fieldtype
+ * Nsm Interactive Gallery Fieldtype
  *
  * @package			NsmInteractiveGallery
  * @version			0.0.1
@@ -85,8 +85,7 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 	 */
 	public function install() {
 		return array(
-			"setting_1" => false,
-			"setting_2" => false
+			"target_field" => false
 		);
 	}
 
@@ -110,9 +109,10 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		}
 
 		$default_data = array(
-			'value_1' => false,
-			'value_2' => false,
-			'value_3' => false
+			'top' => false,
+			'left' => false,
+			'width' => false,
+			'height' => false
 		);
 
 		if(empty($data)) {
@@ -133,7 +133,7 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 	 * @return String The custom field HTML
 	 */
 	public function display_field($data, $input_name = false, $field_id = false) {
-
+		
 		if(!$field_id) {
 			$field_id = $this->field_name;
 		}
@@ -141,22 +141,47 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		if(!$input_name) {
 			$input_name = $this->field_name;
 		}
-
+		
 		$this->_loadResources();
+		
+		$field_id = $this->settings['field_id'];
+		$target_field = $this->settings['target_field'];
+		
+		if(!isset($this->EE->cache[__CLASS__]['js_custom_field'][$field_id])) {
+			$js_canvas = <<<JS
+			{$this->addon_id}.prep.push({
+				target_field: {$target_field},
+				this_field: {$field_id},
+				ready: false
+			});
+JS;
+			$this->EE->cp->add_to_foot("<script type='text/javascript' charset='utf-8'>".$js_canvas."</script>");
+			$this->EE->cache[__CLASS__]['js_custom_field'][$field_id] = true;
+		}
+		
+		$data = $this->_prepData($data);
 
-		$vars = array(
-			'data' => $this->_prepData($data),
-			'title' => 'Example Addon',
-			'input_prefix' => $input_name
-		);
+		// load the info for this field
+		// 
 
-		// Use the native CI Loader class
-		// We need to to do this becuase this field may have been loaded by Matrix or Low varibales
-		return $this->EE->load->_ci_load(array(
-			'_ci_vars' => $vars,
-			'_ci_path' => PATH_THIRD . 'nsm_interactive_gallery/views/fieldtype/field.php',
-			'_ci_return' => true
-		));
+		if($data['top'] == ''){ $data['top'] = 0; }
+		if($data['left'] == ''){ $data['left'] = 0; }
+		if($data['width'] == ''){ $data['width'] = 0; }
+		if($data['height'] == ''){ $data['height'] = 0; }
+		
+		$output = '<div class="ft nsm_ig_fieldset"
+						data-targetField="'.$target_field.'"
+						data-thisField="'.$field_id.'"
+					>'. 
+						'<input class="nd" name="'.$input_name.'[top]" id="'.$field_id.'_top" value="'.$data['top'].'" /> '.
+						'<input class="nd" name="'.$input_name.'[left]" id="'.$field_id.'_left" value="'.$data['left'].'" /> '.
+						'<input class="nd" name="'.$input_name.'[width]" id="'.$field_id.'_width" value="'.$data['width'].'" /> '.
+						'<input class="nd" name="'.$input_name.'[height]" id="'.$field_id.'_height" value="'.$data['height'].'" /> '.
+						'<button class="nsm_ig_select">Select</button> '.
+					'</div>';
+
+		return $output;
+		
 	}
 
 	/**
@@ -207,8 +232,7 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 	 */
 	private function _defaultFieldSettings() {
 		return array(
-			"setting_1" => false,
-			"setting_2" => false
+			"target_field" => false
 		);
 	}
 
@@ -225,31 +249,37 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		if(!$field_name) {
 			$field_name = __CLASS__;
 		}
-
+		
 		$this->_loadResources();
-
+		
+		$EE =& get_instance();
+		
+		$site_id = $EE->config->item('site_id');
+		$group_id = $settings['group_id'];
+		
+		$get_fields = $EE->db->query("SELECT `field_id`,
+			`field_label`,
+			`field_name`
+		FROM `exp_channel_fields`
+		WHERE `field_type` = 'file'
+			AND `field_content_type` = 'image'
+			AND `site_id` = '{$settings['site_id']}'
+			AND `group_id` = '{$settings['group_id']}'
+		");
+		
+		$target_fields = array();
+		foreach($get_fields->result_array() as $row){
+			$target_fields[ $row['field_id'] ] = $row['field_label'].' ('.$row['field_name'].')';
+		}
+		
 		/* Field Layout */
 		$setting_1 = form_dropdown(
-							$field_name . "[setting_1]", 
-							array(
-								'value_1' => 'Value 1',
-							    'value_2' => 'value 2'
-							),
-							$settings['setting_1']
+							$field_name . "[target_field]", 
+							$target_fields,
+							$settings['target_field']
 						);
 
-		/* Field Layout */
-		$setting_2 = form_dropdown(
-							$field_name . "[setting_2]", 
-							array(
-								'value_1' => 'Value 1',
-							    'value_2' => 'value 2'
-							),
-							$settings['setting_2']
-						);
-
-		$r[] = array("Setting 1", $setting_1);
-		$r[] = array("Setting 2", $setting_2);
+		$r[] = array("Target Field", $setting_1);
 		return $r;
 	}
 
@@ -449,7 +479,16 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		if(!isset($this->EE->cache[__CLASS__]['resources_loaded'])) {
 			$theme_url = $this->_getThemeUrl();
 			$this->EE->cp->add_to_head("<link rel='stylesheet' href='{$theme_url}/styles/admin.css' type='text/css' media='screen' charset='utf-8' />");
+			$this->EE->cp->add_to_head("<link rel='stylesheet' href='{$theme_url}/styles/nsm_ig_ui.css' type='text/css' media='screen' charset='utf-8' />");
 			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/admin.js' type='text/javascript' charset='utf-8'></script>");
+			
+			$script_url = BASE . '&amp;C=javascript&amp;M=load&amp;package='.$this->addon_id.'&amp;file=custom_field';
+			$this->EE->cp->add_to_foot("<script src='".$script_url."' type='text/javascript' charset='utf-8'></script>");
+			
+			$this->EE->cp->add_to_foot("<script type='text/javascript' charset='utf-8'> $(function(){ {$this->addon_id}.init(); }); </script>");
+			
+			$this->EE->cp->add_to_foot("<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js' type='text/javascript' charset='utf-8'></script>");
+			
 			$this->EE->cache[__CLASS__]['resources_loaded'] = true;
 		}
 	}

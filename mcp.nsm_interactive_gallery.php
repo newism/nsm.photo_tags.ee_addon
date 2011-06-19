@@ -3,7 +3,7 @@
 require PATH_THIRD.'nsm_interactive_gallery/config.php';
 
 /**
- * NSM Example Addon CP 
+ * Nsm Interactive Gallery CP 
  *
  * @package			NsmInteractiveGallery
  * @version			0.0.1

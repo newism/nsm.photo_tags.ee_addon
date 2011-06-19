@@ -1,6 +1,6 @@
 <!--
 /**
- * XML Changelog for NSM Example Addon
+ * XML Changelog for Nsm Interactive Gallery
  *
  * @package			NsmInteractiveGallery
  * @version			0.0.1
@@ -14,7 +14,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:ee_addon="http://newism.com.au/nsm_addon_updater/#rss-xml">
 	<channel>
-		<title>NSM Example Addon Changelog</title>
+		<title>Nsm Interactive Gallery Changelog</title>
 		<link>https://github.com/newism/nsm.example_addon.ee_addon/versions.xml</link>
 		<description>Most recent changes with links to updates.</description>
 		<item>

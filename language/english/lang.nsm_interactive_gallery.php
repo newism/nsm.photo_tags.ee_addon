@@ -1,7 +1,7 @@
 <?php
 
 /**
- * NSM Example Addon Language File
+ * Nsm Interactive Gallery Language File
  *
  * @package			NsmInteractiveGallery
  * @version			0.0.1
@@ -14,11 +14,11 @@
 $lang = array(
 
 	/* Module */
-	'nsm_interactive_gallery' => 'NSM Example Addon',
-	'nsm_interactive_gallery_module_name' => 'NSM Example Addon: Module name',
-	'nsm_interactive_gallery_module_description' => 'NSM Example Addon: Module description',
+	'nsm_interactive_gallery' => 'Nsm Interactive Gallery',
+	'nsm_interactive_gallery_module_name' => 'Nsm Interactive Gallery: Module name',
+	'nsm_interactive_gallery_module_description' => 'Nsm Interactive Gallery: Module description',
 
-	'index_page_title' => 'NSM Example Addon: Dashboard',
+	'index_page_title' => 'Nsm Interactive Gallery: Dashboard',
 	'index_nav_title' => 'Dashboard',
 
 	/* Extension */

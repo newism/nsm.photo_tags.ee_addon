@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Config file for NSM Example Addon
+ * Config file for Nsm Interactive Gallery
  *
  * @package			NsmInteractiveGallery
  * @version			0.0.1
@@ -13,7 +13,7 @@
 
 if(!defined('NSM_INTERACTIVE_GALLERY_VERSION')) {
 	define('NSM_INTERACTIVE_GALLERY_VERSION', '0.0.1');
-	define('NSM_INTERACTIVE_GALLERY_NAME', 'NSM Example Addon');
+	define('NSM_INTERACTIVE_GALLERY_NAME', 'Nsm Interactive Gallery');
 	define('NSM_INTERACTIVE_GALLERY_ADDON_ID', 'nsm_interactive_gallery');
 }
 

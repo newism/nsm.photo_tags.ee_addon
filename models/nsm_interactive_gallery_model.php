@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * NSM Example Addon Model 
+ * Nsm Interactive Gallery Model 
  *
  * @package			NsmInteractiveGallery
  * @version			0.0.1

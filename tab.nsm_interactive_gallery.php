@@ -3,7 +3,7 @@
 require PATH_THIRD.'nsm_interactive_gallery/config.php';
 
 /**
- * NSM Example Addon Tab
+ * Nsm Interactive Gallery Tab
  *
  * @package			NsmInteractiveGallery
  * @version			0.0.1
@@ -57,7 +57,7 @@ class Nsm_interactive_gallery_tab
 		$field_settings[] = array(
 			'field_id' => 'field_1', // This must match a key in Nsm_interactive_gallery_upd::tabs()
 			'field_type' => 'nsm_interactive_gallery',
-			'field_label' => 'NSM Example Addon Fieldtype',
+			'field_label' => 'Nsm Interactive Gallery Fieldtype',
 			'field_instructions' => '',
 			'field_required' => '',
 			'field_data' => '',

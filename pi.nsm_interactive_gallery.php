@@ -3,7 +3,7 @@
 require PATH_THIRD.'nsm_interactive_gallery/config.php';
 
 /**
- * NSM Example Addon Plugin
+ * Nsm Interactive Gallery Plugin
  * 
  * Generally a module is better to use than a plugin if if it has not CP backend
  *
@@ -41,7 +41,7 @@ class Nsm_interactive_gallery{
 
 	function Nsm_interactive_gallery() {
 		$EE =& get_instance();
-		$this->return_data = "NSM Example Addon Output";
+		$this->return_data = "Nsm Interactive Gallery Output";
 	}
 
 }

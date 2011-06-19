@@ -1,0 +1,5 @@
+.nsm_ig_container { position:relative; }
+.nsm_ig_container img.nsm_ig_canvas { position:static; z-index:0; }
+.nsm_ig_container div.nsm_ig_stroke { position:absolute; top:5px; left:5px; z-index:50; background:#ccc; opacity:0.6; }
+.nsm_ig_container div.nsm_ig_stroke.active { border:1px red solid; }
+.nsm_ig_fieldset .nd { position:absolute; left:-99999em; }

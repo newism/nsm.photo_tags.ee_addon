@@ -3,7 +3,7 @@
 require PATH_THIRD.'nsm_interactive_gallery/config.php';
 
 /**
- * NSM Example Addon Accessory
+ * Nsm Interactive Gallery Accessory
  *
  * @package			NsmInteractiveGallery
  * @version			0.0.1
@@ -19,7 +19,7 @@ class Nsm_interactive_gallery_acc
 	public $id				= NSM_INTERACTIVE_GALLERY_ADDON_ID;
 	public $version			= NSM_INTERACTIVE_GALLERY_VERSION;
 	public $name			= NSM_INTERACTIVE_GALLERY_NAME;
-	public $description		= 'Example accessory for NSM Example Addon.';
+	public $description		= 'Example accessory for Nsm Interactive Gallery.';
 	public $sections		= array();
 
 	function set_sections() {
