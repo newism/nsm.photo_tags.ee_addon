@@ -56,8 +56,8 @@ nsm_interactive_gallery = {
 		var dimensions = {
 			"top":5,
 			"left":5,
-			"width":150,
-			"height":100,
+			"width":50,
+			"height":50,
 			"zIndex":50
 		}
 		// merged

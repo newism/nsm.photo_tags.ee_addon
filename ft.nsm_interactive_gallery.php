@@ -45,6 +45,9 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 	 */
 	public $field_type = '';
 
+
+	public $has_array_data = true;
+
 	/**
 	 * Constructor
 	 * 
@@ -71,7 +74,15 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 	 * 
 	 */
 	public function replace_tag($data, $params = FALSE, $tagdata = FALSE) {
-		return "Tag content";
+		$prefix = (isset($params['prefix']) ? $params['prefix'] : 'nsm_ig_');
+		$data = $this->_prepData($data);
+		foreach($data as $key => $val){
+			$variables[$prefix.$key] = $val;
+		}
+		$tagdata = $this->EE->TMPL->parse_variables_row($tagdata, $variables);
+		$tagdata = $this->EE->functions->prep_conditionals($tagdata, $variables);
+		
+		return $tagdata;
 	}
 
 	//----------------------------------------
@@ -478,16 +489,11 @@ JS;
 	private function _loadResources() {
 		if(!isset($this->EE->cache[__CLASS__]['resources_loaded'])) {
 			$theme_url = $this->_getThemeUrl();
-			$this->EE->cp->add_to_head("<link rel='stylesheet' href='{$theme_url}/styles/admin.css' type='text/css' media='screen' charset='utf-8' />");
-			$this->EE->cp->add_to_head("<link rel='stylesheet' href='{$theme_url}/styles/nsm_ig_ui.css' type='text/css' media='screen' charset='utf-8' />");
-			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/admin.js' type='text/javascript' charset='utf-8'></script>");
-			
-			$script_url = BASE . '&amp;C=javascript&amp;M=load&amp;package='.$this->addon_id.'&amp;file=custom_field';
-			$this->EE->cp->add_to_foot("<script src='".$script_url."' type='text/javascript' charset='utf-8'></script>");
-			
+			$this->EE->cp->add_to_head("<link rel='stylesheet' href='{$theme_url}/styles/custom_field.css' type='text/css' media='screen' charset='utf-8' />");
+			// $this->EE->cp->add_to_foot("<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js' type='text/javascript' charset='utf-8'></script>");
+			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/custom_field.js' type='text/javascript' charset='utf-8'></script>");
 			$this->EE->cp->add_to_foot("<script type='text/javascript' charset='utf-8'> $(function(){ {$this->addon_id}.init(); }); </script>");
 			
-			$this->EE->cp->add_to_foot("<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js' type='text/javascript' charset='utf-8'></script>");
 			
 			$this->EE->cache[__CLASS__]['resources_loaded'] = true;
 		}
