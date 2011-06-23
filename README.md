@@ -11,7 +11,12 @@ NSM Interactive Gallery compliments Pixel & Tonic's Matrix field type to let web
 
 ## Images
 
-* [Report index](http://cl.ly/093h1O35093p2n201l0q)
+* [Setting up the File field](http://cl.ly/setup_image_field.png)
+* [Setting up the Matrix field](http://cl.ly/setup_matrix_field.png)
+* [Review of the custom fields in channel](http://cl.ly/channel_fields.png)
+* [Choosing an image to use](http://cl.ly/choose_image.png)
+* [Selection boxes added to canvas](http://cl.ly/add_selection_boxes.png)
+* [Example usage of the add-on](http://cl.ly/end_result.png)
 
 ## Developers
 
@@ -59,6 +64,10 @@ Now that your custom field is set up you will need to add some tag data to your 
 * Inside this Matrix tag pair add the NSM Interactive Gallery tag pair where it will be needed (eg: we wrap the contents of `div` element's `style` attribute with `{nsm_ig_test_overlay_pos}...{/nsm_ig_test_overlay_pos}`).
 * Use the `nsm_ig_top`, `nsm_ig_left`, `nsm_ig_width` and `nsm_ig_height` tags as needed inside the containing tag pair (we have used these tags with their corresponding CSS style key, eg: `top:{nsm_ig_top}px; left:{nsm_ig_left}px`).
 
+#### Notes
+
+The stock image used in this example is Image ID: 812716 from http://www.sxc.hu/
+
 ## Website Administrators
 
 Adding the selection areas for your NSM Interactive Gallery is simple to do (and will be made easier as we release updated versions).
@@ -77,23 +86,3 @@ If you want to highlight a selection box on the canvas you can:
 * Click the Select button inside the Matrix cell that you are working in and the corresponding selection box will be highlighted on the canvas.
 
 The Reset button inside of a Matrix cell will return the corresponding selection box to its original default values. This is a handy function if you choose a canvas image that is smaller than the old image dimensions and your selection boxes seem to have 'disappeared'.
-
-![Report Index](http://cl.ly/093h1O35093p2n201l0q/Screen_shot_2011-03-07_at_7.44.43_PM.png)    
-Report index
-
-![Report Details](http://cl.ly/191h110z1Z08401h1d02/Screen_shot_2011-03-07_at_7.58.39_PM.png)    
-Report details w/ browser output
-
-![Report Details](http://cl.ly/2m2h0z240i3f1x0b3x08/Screen_shot_2011-03-07_at_7.57.57_PM.png)    
-Report details w/ save as preset inputs
-
-![Saved Reports](http://cl.ly/3B3f0T1f06421C1p2t0P/Screen_shot_2011-03-07_at_7.59.56_PM.png)    
-Report details w/ save as preset inputs
-
-
-
-
-
-
-
-www.sxc.hu Image ID: 812716
