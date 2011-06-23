@@ -277,7 +277,6 @@ JS;
 			`field_name`
 		FROM `exp_channel_fields`
 		WHERE `field_type` = 'file'
-			AND `field_content_type` = 'image'
 			AND `site_id` = '{$site_id}'
 			AND `group_id` = '{$group_id}'
 		");
