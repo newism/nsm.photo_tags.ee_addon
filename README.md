@@ -9,10 +9,6 @@ NSM Photo Tags compliments Pixel & Tonic's Matrix field type to let website admi
 * Simple to use.
 * Infinite possibilities by mixing and matching different field-types in your Matrix custom field (eg: a Matrix row could store a title, caption, Playa link to another entry, hit-box area and then an overlay position for a neat image-swap effect).
 
-## Images
-
-* [Report index](http://cl.ly/093h1O35093p2n201l0q)
-
 ## Developers
 
 To use this custom field-type you will need a Matrix custom field and an Expression Engine File field type that accepts images only. The Matrix field will contain the NSM Photo Tags in one of it's columns and the File field will be used as the 'canvas' for the Photo Tags.
@@ -77,23 +73,3 @@ If you want to highlight a selection box on the canvas you can:
 * Click the Select button inside the Matrix cell that you are working in and the corresponding selection box will be highlighted on the canvas.
 
 The Reset button inside of a Matrix cell will return the corresponding selection box to its original default values. This is a handy function if you choose a canvas image that is smaller than the old image dimensions and your selection boxes seem to have 'disappeared'.
-
-![Report Index](http://cl.ly/093h1O35093p2n201l0q/Screen_shot_2011-03-07_at_7.44.43_PM.png)    
-Report index
-
-![Report Details](http://cl.ly/191h110z1Z08401h1d02/Screen_shot_2011-03-07_at_7.58.39_PM.png)    
-Report details w/ browser output
-
-![Report Details](http://cl.ly/2m2h0z240i3f1x0b3x08/Screen_shot_2011-03-07_at_7.57.57_PM.png)    
-Report details w/ save as preset inputs
-
-![Saved Reports](http://cl.ly/3B3f0T1f06421C1p2t0P/Screen_shot_2011-03-07_at_7.59.56_PM.png)    
-Report details w/ save as preset inputs
-
-
-
-
-
-
-
-www.sxc.hu Image ID: 812716
