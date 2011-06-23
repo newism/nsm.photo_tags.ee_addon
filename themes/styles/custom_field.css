@@ -1,6 +1,6 @@
-.nsm_ig_canvas { position:relative; border:1px #000 solid; margin:0 0 1em 0; }
-.nsm_ig_canvas img.nsm_ig_image { position:static; z-index:0; display:block; }
-.nsm_ig_canvas div.nsm_ig_stroke { position:absolute; top:5px; left:5px; z-index:50; background:#ccc; opacity:0.6; }
-.nsm_ig_canvas div.nsm_ig_stroke.active { border:1px red solid; z-index:100; }
-.nsm_ig_fieldset .nd { position:absolute; left:-99999em; }
-.nsm_ig_fieldset a.nsm_ig_button { border:1px #ccc solid; background:#efefef; padding:0.5em 1em; margin:0.2em 0.5em; width:3em; display:block; float:left; text-align:center; }
+.nsm_photo_tags_canvas { position:relative; border:1px #000 solid; margin:0 0 1em 0; }
+.nsm_photo_tags_canvas img.nsm_photo_tags_image { position:static; z-index:0; display:block; }
+.nsm_photo_tags_canvas div.nsm_photo_tags_stroke { position:absolute; top:5px; left:5px; z-index:50; background:#ccc; opacity:0.6; }
+.nsm_photo_tags_canvas div.nsm_photo_tags_stroke.active { border:1px red solid; z-index:100; }
+.nsm_photo_tags_fieldset .nd { position:absolute; left:-99999em; }
+.nsm_photo_tags_fieldset a.nsm_photo_tags_button { border:1px #ccc solid; background:#efefef; padding:0.5em 1em; margin:0.2em 0.5em; width:3em; display:block; float:left; text-align:center; }

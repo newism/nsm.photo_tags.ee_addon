@@ -1,25 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require PATH_THIRD.'nsm_interactive_gallery/config.php';
+require PATH_THIRD.'nsm_photo_tags/config.php';
 
 /**
- * Nsm Interactive Gallery Extension
+ * Nsm Photo Tags Extension
  *
- * @package			NsmInteractiveGallery
+ * @package			NsmPhotoTags
  * @version			0.0.1
  * @author			Leevi Graham <http://leevigraham.com>
  * @copyright 		Copyright (c) 2007-2010 Newism <http://newism.com.au>
  * @license 		Commercial - please see LICENSE file included with this distribution
- * @link			http://expressionengine-addons.com/nsm-example-addon
+ * @link			http://expressionengine-addons.com/nsm-photo-tags
  * @see 			http://expressionengine.com/public_beta/docs/development/extensions.html
  */
 
-class Nsm_interactive_gallery_ext
+class Nsm_photo_tags_ext
 {
-	public $addon_id		= NSM_INTERACTIVE_GALLERY_ADDON_ID;
-	public $version			= NSM_INTERACTIVE_GALLERY_VERSION;
-	public $name			= NSM_INTERACTIVE_GALLERY_NAME;
-	public $description		= 'Example extension';
+	public $addon_id		= NSM_PHOTO_TAGS_ADDON_ID;
+	public $version			= NSM_PHOTO_TAGS_VERSION;
+	public $name			= NSM_PHOTO_TAGS_NAME;
+	public $description		= 'NSM Photo Tags extension';
 	public $docs_url		= '';
 	public $settings_exist	= TRUE;
 	public $settings		= array();
@@ -243,7 +243,7 @@ class Nsm_interactive_gallery_ext
 			}
 		}
 
-		$EE->nsm_interactive_gallery_helper->addJS($js, array("file"=>FALSE));
+		$EE->nsm_photo_tags_helper->addJS($js, array("file"=>FALSE));
 		return $EE->load->view('extension/_settings_channel_data_map', $vars, TRUE);
 	}
 

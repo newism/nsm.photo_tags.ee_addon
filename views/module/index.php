@@ -5,7 +5,7 @@
 	 */
 ?>
 <?= form_open(
-		Nsm_interactive_gallery_mcp::_route(
+		Nsm_photo_tags_mcp::_route(
 			'index',
 			array('param' => 'some_value'),
 			false

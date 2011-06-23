@@ -1,30 +1,30 @@
 <?php
 
-require PATH_THIRD.'nsm_interactive_gallery/config.php';
+require PATH_THIRD.'nsm_photo_tags/config.php';
 
 /**
- * Nsm Interactive Gallery Display
+ * Nsm Photo Tags Display
  * 
  * Usage:
  * 
  * $this->EE->load->library("{$this->addon_id}_addon", null, $this->addon_id);
  *
  * #  Add the custom field stylesheet to the header 
- * $this->EE->nsm_interactive_gallery_helper->addCSS('custom_field.css');
+ * $this->EE->nsm_photo_tags_helper->addCSS('custom_field.css');
  * 
  * # Load the JS for the iframe
- * $this->EE->nsm_interactive_gallery_helper->addJS('custom_field.js');
- * $this->EE->nsm_interactive_gallery_helper->addJS('../lib/jquery.cookie.js');
+ * $this->EE->nsm_photo_tags_helper->addJS('custom_field.js');
+ * $this->EE->nsm_photo_tags_helper->addJS('../lib/jquery.cookie.js');
  * 
- * @package			NsmInteractiveGallery
+ * @package			NsmPhotoTags
  * @version			0.0.1
  * @author			Leevi Graham <http://leevigraham.com>
  * @copyright 		Copyright (c) 2007-2010 Newism <http://newism.com.au>
  * @license 		Commercial - please see LICENSE file included with this distribution
- * @link			http://expressionengine-addons.com/nsm-example-addon
+ * @link			http://expressionengine-addons.com/nsm-photo-tags
  */
 
-class Nsm_interactive_gallery_helper{
+class Nsm_photo_tags_helper{
 
 	/**
 	 * The addon ID
