@@ -57,7 +57,21 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		parent::EE_Fieldtype();
 	}
 
-
+	public function _convertVectorsToDimensions($data)
+	{
+		$dimensions = array(
+						'top' => 0,
+						'left' => 0,
+						'width' => 0,
+						'height' => 0
+					);
+		$coords = json_decode($data, true);
+		$dimensions['top'] = $coords[0][0];
+		$dimensions['left'] = $coords[0][1];
+		$dimensions['width'] = $coords[1][1]-$coords[0][1];
+		$dimensions['height'] = $coords[3][0]-$coords[0][0];
+		return $dimensions;
+	}
 
 	//----------------------------------------
 	// DISPLAY FIELD / CELL / VARIABLE TAG
@@ -76,7 +90,8 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 	public function replace_tag($data, $params = FALSE, $tagdata = FALSE) {
 		$prefix = (isset($params['prefix']) ? $params['prefix'] : 'nsm_ig_');
 		$data = $this->_prepData($data);
-		foreach($data as $key => $val){
+		$dimensions = $this->_convertVectorsToDimensions($data['coords']);
+		foreach($dimensions as $key => $val){
 			$variables[$prefix.$key] = $val;
 		}
 		$tagdata = $this->EE->TMPL->parse_variables_row($tagdata, $variables);
@@ -120,10 +135,7 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		}
 
 		$default_data = array(
-			'top' => false,
-			'left' => false,
-			'width' => false,
-			'height' => false
+			"coords" => "[[10,10],[10,60],[60,60],[60,10]]"
 		);
 
 		if(empty($data)) {
@@ -131,7 +143,9 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		} elseif(is_string($data)) {
 			$data = json_decode($data, true);
 		}
-		return $this->_mergeRecursive($default_data, $data);
+		
+		$data = $this->_mergeRecursive($default_data, $data);
+		return $data;
 	}
 	
 	/**
@@ -152,43 +166,33 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		if(!$input_name) {
 			$input_name = $this->field_name;
 		}
-		
+
+		$data = $this->_prepData($data);
+
 		$this->_loadResources();
 		
 		$field_id = $this->settings['field_id'];
 		$target_field = $this->settings['target_field'];
 		
 		if(!isset($this->EE->cache[__CLASS__]['js_custom_field'][$field_id])) {
+		
 			$js_canvas = <<<JS
-			{$this->addon_id}.prep.push({
-				target_field: {$target_field},
-				this_field: {$field_id},
-				ready: false
-			});
+$("#field_id_{$field_id}").NSM_InteractiveGallery({
+	src_image_field_id: "{$target_field}"
+});
+
 JS;
 			$this->EE->cp->add_to_foot("<script type='text/javascript' charset='utf-8'>".$js_canvas."</script>");
 			$this->EE->cache[__CLASS__]['js_custom_field'][$field_id] = true;
 		}
-		
-		$data = $this->_prepData($data);
 
-		// load the info for this field
-		// 
-
-		if($data['top'] == ''){ $data['top'] = 0; }
-		if($data['left'] == ''){ $data['left'] = 0; }
-		if($data['width'] == ''){ $data['width'] = 0; }
-		if($data['height'] == ''){ $data['height'] = 0; }
-		
 		$output = '<div class="ft nsm_ig_fieldset"
 						data-targetField="'.$target_field.'"
 						data-thisField="'.$field_id.'"
 					>'. 
-						'<input class="nd" name="'.$input_name.'[top]" id="'.$field_id.'_top" value="'.$data['top'].'" /> '.
-						'<input class="nd" name="'.$input_name.'[left]" id="'.$field_id.'_left" value="'.$data['left'].'" /> '.
-						'<input class="nd" name="'.$input_name.'[width]" id="'.$field_id.'_width" value="'.$data['width'].'" /> '.
-						'<input class="nd" name="'.$input_name.'[height]" id="'.$field_id.'_height" value="'.$data['height'].'" /> '.
-						'<button class="nsm_ig_select">Select</button> '.
+						'<textarea class="nsm_ig_dataval nd" name="'.$input_name.'[coords]">'.$data['coords'].'</textarea>'.
+						'<a href="#field_id_'.$field_id.'" class="nsm_ig_button">Select</a> '.
+						'<a href="#field_id_'.$field_id.'" class="nsm_ig_button" data-action="_resetPos">Reset</a>'.
 					'</div>';
 
 		return $output;
@@ -266,7 +270,7 @@ JS;
 		$EE =& get_instance();
 		
 		$site_id = $EE->config->item('site_id');
-		$group_id = $settings['group_id'];
+		$group_id = $EE->input->get('group_id');
 		
 		$get_fields = $EE->db->query("SELECT `field_id`,
 			`field_label`,
@@ -274,8 +278,8 @@ JS;
 		FROM `exp_channel_fields`
 		WHERE `field_type` = 'file'
 			AND `field_content_type` = 'image'
-			AND `site_id` = '{$settings['site_id']}'
-			AND `group_id` = '{$settings['group_id']}'
+			AND `site_id` = '{$site_id}'
+			AND `group_id` = '{$group_id}'
 		");
 		
 		$target_fields = array();
@@ -491,8 +495,9 @@ JS;
 			$theme_url = $this->_getThemeUrl();
 			$this->EE->cp->add_to_head("<link rel='stylesheet' href='{$theme_url}/styles/custom_field.css' type='text/css' media='screen' charset='utf-8' />");
 			// $this->EE->cp->add_to_foot("<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js' type='text/javascript' charset='utf-8'></script>");
-			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/custom_field.js' type='text/javascript' charset='utf-8'></script>");
-			$this->EE->cp->add_to_foot("<script type='text/javascript' charset='utf-8'> $(function(){ {$this->addon_id}.init(); }); </script>");
+			// $this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/custom_field.js' type='text/javascript' charset='utf-8'></script>");
+			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/jquery-nsmInteractiveGallery.js' type='text/javascript' charset='utf-8'></script>");
+			//$this->EE->cp->add_to_foot("<script type='text/javascript' charset='utf-8'> $(function(){ {$this->addon_id}.init(); }); </script>");
 			
 			
 			$this->EE->cache[__CLASS__]['resources_loaded'] = true;
