@@ -26,7 +26,7 @@
 			var widget = $(widget_el).data('nsm_ig_widget');
 			var $canvas = widget.$canvas;
 			if(!$canvas) {
-				$image = $("<img />")
+				var $image = $("<img />")
 							.addClass('nsm_ig_image');
 				$canvas = $("<div />")
 							.addClass('nsm_ig_canvas')
