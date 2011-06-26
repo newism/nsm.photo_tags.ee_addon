@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Nsm Interactive Gallery Model 
+ * Nsm Photo Tags Model 
  *
- * @package			NsmInteractiveGallery
+ * @package			NsmPhotoTags
  * @version			0.0.1
  * @author			Leevi Graham <http://leevigraham.com>
  * @copyright 		Copyright (c) 2007-2010 Newism <http://newism.com.au>
  * @license 		Commercial - please see LICENSE file included with this distribution
- * @link			http://expressionengine-addons.com/nsm-example-addon
+ * @link			http://expressionengine-addons.com/nsm-photo-tags
  * @see				http://codeigniter.com/user_guide/general/models.html
  **/
-class Nsm_interactive_gallery_model extends CI_Model {
+class Nsm_photo_tags_model extends CI_Model {
 
 	/**
 	 * The model table
 	 * 
 	 * @var string
 	 */
-	private static $table_name = "nsm_interactive_galleryn";
+	private static $table_name = "nsm_photo_tagsn";
 
 	/**
 	 * The model table fields

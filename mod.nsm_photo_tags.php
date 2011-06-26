@@ -1,22 +1,22 @@
 <?php if (! defined('BASEPATH')) die('No direct script access allowed');
 
-require PATH_THIRD.'nsm_interactive_gallery/config.php';
+require PATH_THIRD.'nsm_photo_tags/config.php';
 
 /**
- * Nsm Interactive Gallery Tag methods
+ * Nsm Photo Tags Tag methods
  *
- * @package			NsmInteractiveGallery
+ * @package			NsmPhotoTags
  * @version			0.0.1
  * @author			Leevi Graham <http://leevigraham.com>
  * @copyright 		Copyright (c) 2007-2010 Newism <http://newism.com.au>
  * @license 		Commercial - please see LICENSE file included with this distribution
- * @link			http://expressionengine-addons.com/nsm-example-addon
+ * @link			http://expressionengine-addons.com/nsm-photo-tags
  * @see				http://expressionengine.com/public_beta/docs/development/modules.html#control_panel_file
  */
 
-class Nsm_interactive_gallery {
+class Nsm_photo_tags {
 
-	private $addon_id = NSM_INTERACTIVE_GALLERY_ADDON_ID;
+	private $addon_id = NSM_PHOTO_TAGS_ADDON_ID;
 
 	/**
 	 * PHP5 constructor function.

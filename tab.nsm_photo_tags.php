@@ -1,20 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require PATH_THIRD.'nsm_interactive_gallery/config.php';
+require PATH_THIRD.'nsm_photo_tags/config.php';
 
 /**
- * Nsm Interactive Gallery Tab
+ * Nsm Photo Tags Tab
  *
- * @package			NsmInteractiveGallery
+ * @package			NsmPhotoTags
  * @version			0.0.1
  * @author			Leevi Graham <http://leevigraham.com>
  * @copyright 		Copyright (c) 2007-2010 Newism <http://newism.com.au>
  * @license 		Commercial - please see LICENSE file included with this distribution
- * @link			http://expressionengine-addons.com/nsm-example-addon
+ * @link			http://expressionengine-addons.com/nsm-photo-tags
  * @see				http://expressionengine.com/public_beta/docs/development/modules.html#tab_file
  */
 
-class Nsm_interactive_gallery_tab
+class Nsm_photo_tags_tab
 {
 	/**
 	 * This function creates the fields that will be displayed on the publish page. It must return $settings, a multidimensional associative array specifying the display settings and values associated with each of your custom fields.
@@ -40,10 +40,10 @@ class Nsm_interactive_gallery_tab
 	 */
 	public function publish_tabs($channel_id, $entry_id = FALSE) {
 		// Uncomment to hide tab.
-		// if(!class_exists('Nsm_interactive_gallery_ext'))
-		// 	require(PATH_THIRD . "nsm_interactive_gallery/ext.nsm_interactive_gallery.php");
+		// if(!class_exists('Nsm_photo_tags_ext'))
+		// 	require(PATH_THIRD . "nsm_photo_tags/ext.nsm_photo_tags.php");
 		// 
-		// $ext = new Nsm_interactive_gallery_ext();
+		// $ext = new Nsm_photo_tags_ext();
 		// if(
 		// 	! isset($ext->settings['channels'][$channel_id])
 		// 	|| empty($ext->settings['channels'][$channel_id]['show_tab'])
@@ -52,12 +52,12 @@ class Nsm_interactive_gallery_tab
 
 
 		$EE =& get_instance();
-		$EE->lang->loadfile('nsm_interactive_gallery');
+		$EE->lang->loadfile('nsm_photo_tags');
 
 		$field_settings[] = array(
-			'field_id' => 'field_1', // This must match a key in Nsm_interactive_gallery_upd::tabs()
-			'field_type' => 'nsm_interactive_gallery',
-			'field_label' => 'Nsm Interactive Gallery Fieldtype',
+			'field_id' => 'field_1', // This must match a key in Nsm_photo_tags_upd::tabs()
+			'field_type' => 'nsm_photo_tags',
+			'field_label' => 'Nsm Photo Tags Fieldtype',
 			'field_instructions' => '',
 			'field_required' => '',
 			'field_data' => '',

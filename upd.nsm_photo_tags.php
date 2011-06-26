@@ -1,23 +1,23 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require PATH_THIRD.'nsm_interactive_gallery/config.php';
+require PATH_THIRD.'nsm_photo_tags/config.php';
 
 /**
  * Install / Uninstall and updates the modules
  *
- * @package			NsmInteractiveGallery
+ * @package			NsmPhotoTags
  * @version			0.0.1
  * @author			Leevi Graham <http://leevigraham.com>
  * @copyright 		Copyright (c) 2007-2010 Newism <http://newism.com.au>
  * @license 		Commercial - please see LICENSE file included with this distribution
- * @link			http://expressionengine-addons.com/nsm-example-addon
+ * @link			http://expressionengine-addons.com/nsm-photo-tags
  * @see				http://expressionengine.com/public_beta/docs/development/modules.html#update_file
  */
 
-class Nsm_interactive_gallery_upd
+class Nsm_photo_tags_upd
 {
-	public  $version = NSM_INTERACTIVE_GALLERY_VERSION;
-	public  $addon_id = NSM_INTERACTIVE_GALLERY_ADDON_ID;
+	public  $version = NSM_PHOTO_TAGS_VERSION;
+	public  $addon_id = NSM_PHOTO_TAGS_ADDON_ID;
 	private $has_cp_backend = true;
 	private $has_publish_fields = true;
 	private $has_tabs = true;

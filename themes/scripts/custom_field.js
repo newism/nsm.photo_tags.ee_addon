@@ -22,14 +22,14 @@
 				var image_name = $("input[name='field_id_"+(settings.target_field)+"_hidden']").val();
 				var image_url = upload_dir + image_name;
 				// assemble image html and prepend to table
-				var image_html = $('<img class="nsm_ig_canvas" src="'+image_url+'" alt="large image" id="field_id_'+settings.this_field+'_image"/>');
+				var image_html = $('<img class="nsm_photo_tags_canvas" src="'+image_url+'" alt="large image" id="field_id_'+settings.this_field+'_image"/>');
 				// prepare the construction site
 				settings.container_id = 'field_id_'+settings.this_field+'_ui_container';
-				settings.zone = $('<div class="nsm_ig_container" id="'+settings.container_id+'"></div>').prependTo( $("#field_id_"+settings.this_field+'') );
+				settings.zone = $('<div class="nsm_photo_tags_container" id="'+settings.container_id+'"></div>').prependTo( $("#field_id_"+settings.this_field+'') );
 				// append image and fix width to image size
 				settings.zone.prepend(image_html);
 				
-				Matrix.bind('nsm_interactive_gallery', 'display', function(cell){
+				Matrix.bind('nsm_photo_tags', 'display', function(cell){
 					var $d = cell.dom.$inputs;
 					// add to canvas
 					var stroke = {
@@ -45,18 +45,18 @@
 							"zIndex":50
 						}
 					};
-					$("#"+stroke.field_id).NsmInteractiveGallery('add', stroke);
+					$("#"+stroke.field_id).NsmPhotoTags('add', stroke);
 					// bind select button
-					var select_btn = cell.dom.$td.find('button.nsm_ig_select');
+					var select_btn = cell.dom.$td.find('button.nsm_photo_tags_select');
 					select_btn.bind('click', function(event){
 						event.preventDefault();
 						var id = cell.field.id+'_'+cell.row.id+'_'+cell.col.id;
-						$("#"+options.field_id).NsmInteractiveGallery('select', id);
+						$("#"+options.field_id).NsmPhotoTags('select', id);
 						return false;
 					});
 				});
 				// on delete row
-				Matrix.bind('nsm_interactive_gallery', 'remove', function(cell){
+				Matrix.bind('nsm_photo_tags', 'remove', function(cell){
 				  $("#"+cell.row.id).remove();
 				});
 				
@@ -82,28 +82,28 @@
 			// create new selection box
 			var $s = $('<div/>')
 						.attr('id', options.field_id+'_'+options.row_id+'_'+options.col_id)
-						.data('nsm_ig', {
+						.data('nsm_photo_tags', {
 							"canvas": settings.this_field,
 							"field": options.field_id,
 							"row": options.row_id,
 							"col": options.col_id
 						})
-						.addClass('nsm_ig_stroke')
+						.addClass('nsm_photo_tags_stroke')
 						.css(dimensions)
 						.css('position', 'absolute')
 						.bind('click', function(){
 							var id = this.id; 
-							$("#"+options.field_id).NsmInteractiveGallery('select', id);
+							$("#"+options.field_id).NsmPhotoTags('select', id);
 							return false;
 						})
 						.draggable({
 							stop: function(event, ui) {
-								$("#"+options.field_id).NsmInteractiveGallery('updatePos', ui);
+								$("#"+options.field_id).NsmPhotoTags('updatePos', ui);
 							}
 						})
 						.resizable({
 							stop: function(event, ui) {
-								$("#"+options.field_id).NsmInteractiveGallery('updatePos', ui);
+								$("#"+options.field_id).NsmPhotoTags('updatePos', ui);
 							}
 						})
 						.appendTo(settings.zone);
@@ -113,7 +113,7 @@
 		updatePos:function(ui){
 			var $t = $(ui.helper);
 			var this_id = $t.attr('id');
-			var ig_data = $t.data('nsm_ig');
+			var ig_data = $t.data('nsm_photo_tags');
 	
 			var input_place = ig_data.field+'\\['+ig_data.row+'\\]\\['+ig_data.col+'\\]';
 	
@@ -130,16 +130,16 @@
 		select: function(id){
 			var $t = $('#'+id);
 			var this_id = $t.attr('id');
-			var ig_data = $t.data('nsm_ig');
+			var ig_data = $t.data('nsm_photo_tags');
 			console.log(settings.strokes);
-			var brushes = settings.zone.find('div.nsm_ig_stroke');
+			var brushes = settings.zone.find('div.nsm_photo_tags_stroke');
 			brushes.removeClass('active');
 			brushes.filter($t).addClass('active');
 			return this;
 		}
 	};
 	
-	$.fn.NsmInteractiveGallery = function(method){
+	$.fn.NsmPhotoTags = function(method){
 		
 		// Method calling logic
 		if(methods[method]){
@@ -147,7 +147,7 @@
 		}else if(typeof method === 'object' || ! method){
 			return methods.init.apply(this, arguments);
 		}else{
-			$.error('Method '+ method+' does not exist on jQuery.NsmInteractiveGallery');
+			$.error('Method '+ method+' does not exist on jQuery.NsmPhotoTags');
 		}
 		
 	}

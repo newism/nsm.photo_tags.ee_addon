@@ -1,20 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require PATH_THIRD.'nsm_interactive_gallery/config.php';
+require PATH_THIRD.'nsm_photo_tags/config.php';
 
 /**
- * Nsm Interactive Gallery Fieldtype
+ * Nsm Photo Tags Fieldtype
  *
- * @package			NsmInteractiveGallery
+ * @package			NsmPhotoTags
  * @version			0.0.1
  * @author			Leevi Graham <http://leevigraham.com>
  * @copyright 		Copyright (c) 2007-2010 Newism <http://newism.com.au>
  * @license 		Commercial - please see LICENSE file included with this distribution
- * @link			http://expressionengine-addons.com/nsm-example-addon
+ * @link			http://expressionengine-addons.com/nsm-photo-tags
  * @see				http://expressionengine.com/public_beta/docs/development/fieldtypes.html
  */
 
-class Nsm_interactive_gallery_ft extends EE_Fieldtype
+class Nsm_photo_tags_ft extends EE_Fieldtype
 {
 	/**
 	 * Field info - Required
@@ -23,11 +23,11 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 	 * @var array
 	 */
 	public $info = array(
-		'version'		=> NSM_INTERACTIVE_GALLERY_VERSION,
-		'name'			=> NSM_INTERACTIVE_GALLERY_NAME
+		'version'		=> NSM_PHOTO_TAGS_VERSION,
+		'name'			=> NSM_PHOTO_TAGS_NAME
 	);
 
-	public $addon_id		= NSM_INTERACTIVE_GALLERY_ADDON_ID;
+	public $addon_id		= NSM_PHOTO_TAGS_ADDON_ID;
 
 	/**
 	 * The fieldtype global settings array
@@ -88,7 +88,7 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 	 * 
 	 */
 	public function replace_tag($data, $params = FALSE, $tagdata = FALSE) {
-		$prefix = (isset($params['prefix']) ? $params['prefix'] : 'nsm_ig_');
+		$prefix = (isset($params['prefix']) ? $params['prefix'] : 'nsm_photo_tags_');
 		$data = $this->_prepData($data);
 		$dimensions = $this->_convertVectorsToDimensions($data['coords']);
 		foreach($dimensions as $key => $val){
@@ -177,7 +177,7 @@ class Nsm_interactive_gallery_ft extends EE_Fieldtype
 		if(!isset($this->EE->cache[__CLASS__]['js_custom_field'][$field_id])) {
 		
 			$js_canvas = <<<JS
-$("#field_id_{$field_id}").NSM_InteractiveGallery({
+$("#field_id_{$field_id}").NSM_PhotoTags({
 	src_image_field_id: "{$target_field}"
 });
 
@@ -186,13 +186,13 @@ JS;
 			$this->EE->cache[__CLASS__]['js_custom_field'][$field_id] = true;
 		}
 
-		$output = '<div class="ft nsm_ig_fieldset"
+		$output = '<div class="ft nsm_photo_tags_fieldset"
 						data-targetField="'.$target_field.'"
 						data-thisField="'.$field_id.'"
 					>'. 
-						'<textarea class="nsm_ig_dataval nd" name="'.$input_name.'[coords]">'.$data['coords'].'</textarea>'.
-						'<a href="#field_id_'.$field_id.'" class="nsm_ig_button">Select</a> '.
-						'<a href="#field_id_'.$field_id.'" class="nsm_ig_button" data-action="_resetPos">Reset</a>'.
+						'<textarea class="nsm_photo_tags_dataval nd" name="'.$input_name.'[coords]">'.$data['coords'].'</textarea>'.
+						'<a href="#field_id_'.$field_id.'" class="nsm_photo_tags_button">Select</a> '.
+						'<a href="#field_id_'.$field_id.'" class="nsm_photo_tags_button" data-action="_resetPos">Reset</a>'.
 					'</div>';
 
 		return $output;
@@ -493,12 +493,8 @@ JS;
 		if(!isset($this->EE->cache[__CLASS__]['resources_loaded'])) {
 			$theme_url = $this->_getThemeUrl();
 			$this->EE->cp->add_to_head("<link rel='stylesheet' href='{$theme_url}/styles/custom_field.css' type='text/css' media='screen' charset='utf-8' />");
-			// $this->EE->cp->add_to_foot("<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js' type='text/javascript' charset='utf-8'></script>");
-			// $this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/custom_field.js' type='text/javascript' charset='utf-8'></script>");
-			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/jquery-nsmInteractiveGallery.js' type='text/javascript' charset='utf-8'></script>");
-			//$this->EE->cp->add_to_foot("<script type='text/javascript' charset='utf-8'> $(function(){ {$this->addon_id}.init(); }); </script>");
-			
-			
+			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/jquery-nsmPhotoTags.js' type='text/javascript' charset='utf-8'></script>");
+
 			$this->EE->cache[__CLASS__]['resources_loaded'] = true;
 		}
 	}
