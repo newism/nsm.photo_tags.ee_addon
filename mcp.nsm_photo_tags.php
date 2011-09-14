@@ -32,7 +32,7 @@ class Nsm_photo_tags_mcp{
 	}
 
 	public function _renderLayout($page, $out = FALSE) {
-		$this->EE->cp->set_variable('cp_page_title', $this->EE->lang->line("{$page}_page_title"));
+		$this->EE->cp->set_variable('cp_page_title', $this->EE->lang->line(self::$addon_id."{$page}_page_title"));
 		$this->EE->cp->set_breadcrumb(self::_route(), $this->EE->lang->line('nsm_exmple_addon_module_name'));
 
 		$nav = array();

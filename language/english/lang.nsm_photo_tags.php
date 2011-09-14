@@ -18,8 +18,8 @@ $lang = array(
 	'nsm_photo_tags_module_name' => 'Nsm Photo Tags',
 	'nsm_photo_tags_module_description' => 'Photo Tagging for ExpressionEngine 2.2+',
 
-	'index_page_title' => 'Nsm Photo Tags: Dashboard',
-	'index_nav_title' => 'Dashboard',
+	'nsm_photo_tags_index_page_title' => 'Nsm Photo Tags: Dashboard',
+	'nsm_photo_tags_index_nav_title' => 'Dashboard',
 
 	/* Extension */
 	'save_extension_settings' => 'Save extension settings',
