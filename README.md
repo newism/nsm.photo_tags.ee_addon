@@ -1,6 +1,6 @@
 # NSM Photo Tags
 
-NSM Photo Tags is an image tagging system for ExpressionEngine 2 designed to be used for creating interactive galleries. 
+NSM Photo Tags is an image tagging system for ExpressionEngine 2 designed to be used for tagging your photos. 
 
 NSM Photo Tags compliments Pixel & Tonic's Matrix field type to let website administrators add selection regions to an image by adding Matrix rows and resizing the selection box. The position and dimensions for these selections are accessible in the custom field's tag data pair for website designers to output the selection regions using `nsm_photo_tags_top`, `nsm_photo_tags_left`, `nsm_photo_tags_width` and `nsm_photo_tags_height` tags (prefixed with `nsm_photo_tags_` to minimise conflicts with other modules).
 
@@ -72,7 +72,7 @@ The stock image used in this example is Image ID: 812716 from http://www.sxc.hu/
 
 Adding the selection areas for your NSM Photo Tags is simple to do (and will be made easier as we release updated versions).
 
-* Create a new Channel Entry in the channel used to store your galleries.
+* Create a new Channel Entry in the channel used to store your photo and corresponding tags.
 * Choose or upload an image to use in the File field that you chose to target during the set up process (eg: we use `nsm_photo_tags_test_image`).
 * Save the entry and follow the link to Edit the entry again.
 * You will notice that above the Matrix custom field we added for our NSM Photo Tags there is now a large version of the image you chose earlier.
