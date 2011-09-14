@@ -1,0 +1,33 @@
+<h2 class="tag" id="primary-tag-pair"><code>Primary tag pair</code></h2>
+
+<p>NSM Photo Tags uses the short name of your custom field as the primary variable pair. The custom field variable pair must be placed inside your <strong>Matrix</strong> tag pair.</p>
+
+<p>Example: If your NSM Photo Tags custom field short_name was "my_tags" the primary variable tag pair would be <code>{my_tags} ... {/my_tags}</code></p>
+
+<h3 id="primary-tag-pair.parameters" class="params">Parameters</h3>
+
+<h4 data-tag="primary-tag-pair" title="prefix"><code>prefix="nsm_photo_tags_"</code> <small>[optional]</small></h4>
+
+<p>By default the single tag variables used inside a NSM Photo Tags tag pair will be prefixed with <code>nsm_photo_tags_</code> to minimise the chance that conflicts could arise where multiple modules or plugins may use tag names such as <code>width</code>, <code>height</code>, <code>top</code> or <code>left</code>. You can specify a tag pair&#8217;s tag variable prefix to use by setting a new value in the <code>prefix</code>. If you set a blank value in the <code class="param" data-tag="exp:nsm_photo_tags:tag_pair">prefix</code> parameter this will remove the prefix for the tag pair.</p>
+
+<h3>Single variable tags</h3>
+
+<p>The single tag variables below are using the default <code class="param" data-tag="exp:nsm_photo_tags">prefix</code> of "nsm_photo_tags_". If you choose to use a different prefix via the <code class="param" data-tag="exp:nsm_photo_tags">prefix</code> parameter you will need to use different tags to those listed below.</p>
+
+<p>Example: If you chose to use a prefix of "my_tags_" in the tag pair then you would use the tag variables <code>my_tags_width</code>,  <code>my_tags_height</code>, <code>my_tags_top</code> and <code>my_tags_left</code> instead.</p>
+
+<h4><code>nsm_photo_tags_width</code></h4>
+
+<p>Returns the width of the selection box. This is calculated by subtracting the X position of the top-left set of co-ordinates from the X position top-right set of co-ordinates.</p>
+
+<h4><code>nsm_photo_tags_height</code></h4>
+
+<p>Returns the height of the selection box. This is calculated by subtracting the Y position of the top-left set of co-ordinates from the Y bottom-left set of co-ordinates.</p>
+
+<h4><code>nsm_photo_tags_top</code></h4>
+
+<p>Returns the vertical offset of the selection box from the top of the canvas. This is calculated by returning the Y position of the top-left set of co-ordinates.</p>
+
+<h4><code>nsm_photo_tags_left</code></h4>
+
+<p>Returns the horizontal offset of the selection box from the left side of the canvas. This is calculated by returning the X position of the top-left set of co-ordinates.</p>

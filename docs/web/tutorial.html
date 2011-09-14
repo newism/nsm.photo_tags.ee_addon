@@ -1,0 +1,46 @@
+<h2>Creating a new custom field</h2>
+
+<p>To use this custom field-type you will need a Matrix custom field and an Expression Engine File field type that accepts images only. The Matrix field will contain the NSM Photo Tags in one of it's columns and the File field will be used as the 'canvas' for the Photo Tags.</p>
+
+<ol>
+<li>It is best to add the image File field to the channel custom fields first to save time (eg: our image field is named <code>nsm_photo_tags_test_image</code>).</li>
+<li>Add the Matrix field that will be used for your Photo Tags (eg: name this Matrix field <code>nsm_photo_tags_test_matrix</code>).</li>
+<li>Set one of the Matrix column field-types to NSM Photo Tags and name the column as appropriate (eg: our NSM Photo Tags is named <code>nsm_photo_tags_test_overlay_pos</code>).</li>
+<li>In the field settings for this NSM Photo Tags choose the image that will be used as the 'canvas' using the select input (eg: choose the option for our <code>nsm_photo_tags_test_image</code> field).</li>
+<li>Save the new custom field.</li>
+</ol>
+
+<h2>Entering data</h2>
+
+<p>Adding the selection areas for your NSM Photo Tags is simple to do (and will be made easier as we release updated versions).</p>
+
+<ol>
+<li>Create a new Channel Entry in the channel used to store your photo and corresponding tags.</li>
+<li>Choose or upload an image to use in the File field that you chose to target during the set up process (eg: we use <code>nsm_photo_tags_test_image</code>).</li>
+<li>Save the entry and follow the link to Edit the entry again.</li>
+<li>You will notice that above the Matrix custom field we added for our NSM Photo Tags there is now a large version of the image you chose earlier.</li>
+<li>To add a new selection area to the canvas add a new Matrix row.</li>
+<li>A new box has been added to the canvas and can be dragged and resized to cover the desired area of the image.</li>
+<li>Repeat for each selection overlay that you want to add to the image.</li>
+</ol>
+
+<p>If you want to highlight a selection box on the canvas you can:</p>
+
+<ol>
+<li>Click on a selection box.</li>
+<li>Click the Select button inside the Matrix cell that you are working in and the corresponding selection box will be highlighted on the canvas.</li>
+</ol>
+
+<p>The Reset button inside of a Matrix cell will return the corresponding selection box to its original default values. This is a handy function if you choose a canvas image that is smaller than the old image dimensions and your selection boxes seem to have 'disappeared'.</p>
+
+<h2>Outputting data in templates</h2>
+
+<p>Now that your custom field is set up you will need to add some tag data to your Expression Engine templates that will display the NSM Photo Tags. NSM Photo Tags wraps its tag variables in a tag pair in a similar fashion to Matrix. The top, left, width and height values are stored as single tag variables.</p>
+
+<ol>
+<li>Add the canvas for our Photo Tags using either an image or a CSS background image (eg: our image source will be <code>{nsm_photo_tags_test_image}</code>).</li>
+<li>Add the Matrix field tag pair where needed (eg: <code>{nsm_photo_tags_test_matrix}</code>).</li>
+<li>One way of visualising your Photo Tags might be by using 'div' elements for each Matrix row (and then another <code>div</code> for each Matrix column that uses NSM Photo Tags as the field-type)</li>
+<li>Inside this Matrix tag pair add the NSM Photo Tags tag pair where it will be needed (eg: we wrap the contents of <code>div</code> element&#8217;s <code>style</code> attribute with <code>{nsm_photo_tags_test_overlay_pos}...{/nsm_photo_tags_test_overlay_pos}</code>).</li>
+<li>Use the <code>nsm_photo_tags_top</code>, <code>nsm_photo_tags_left</code>, <code>nsm_photo_tags_width</code> and <code>nsm_photo_tags_height</code> tags as needed inside the containing tag pair (we have used these tags with their corresponding CSS style key, eg: <code>top:{nsm_photo_tags_top}px; left:{nsm_photo_tags_left}px</code>).</li>
+</ol>
