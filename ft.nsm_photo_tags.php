@@ -144,7 +144,7 @@ class Nsm_photo_tags_ft extends EE_Fieldtype
 			$data = json_decode($data, true);
 		}
 		
-		$data = $this->_mergeRecursive($default_data, $data);
+		$data = array_merge($default_data, $data);
 		return $data;
 	}
 	
@@ -190,7 +190,7 @@ JS;
 						data-targetField="'.$target_field.'"
 						data-thisField="'.$field_id.'"
 					>'. 
-						'<textarea class="nsm_photo_tags_dataval nd" name="'.$input_name.'[coords]">'.$data['coords'].'</textarea>'.
+						'<textarea class="nsm_photo_tags_dataval" style="display:block;" name="'.$input_name.'[coords]">'.$data['coords'].'</textarea>'.
 						'<a href="#field_id_'.$field_id.'" class="nsm_photo_tags_button">Select</a> '.
 						'<a href="#field_id_'.$field_id.'" class="nsm_photo_tags_button" data-action="_resetPos">Reset</a>'.
 					'</div>';
@@ -277,7 +277,7 @@ JS;
 			`field_name`
 		FROM `exp_channel_fields`
 		WHERE `field_type` = 'file'
-			AND `field_content_type` = 'image'
+			-- AND `field_content_type` = 'image'
 			AND `site_id` = '{$site_id}'
 			AND `group_id` = '{$group_id}'
 		");
@@ -305,7 +305,7 @@ JS;
 	 * @param $field_settings array The field settings
 	 */
 	public function display_settings($field_settings) {
-		$field_settings = $this->_mergeRecursive($this->_defaultFieldSettings(), $field_settings);
+		// $field_settings = $this->_mergeRecursive($this->_defaultFieldSettings(), $field_settings);
 		$rows = $this->_displayFieldSettings($field_settings);
 
 		// add the rows
@@ -322,7 +322,7 @@ JS;
 	 * @return array Label and form inputs
 	 */
 	public function display_cell_settings($cell_settings) {
-		$cell_settings = $this->_mergeRecursive($this->_defaultFieldSettings(), $cell_settings);
+		// $cell_settings = $this->_mergeRecursive($this->_defaultFieldSettings(), $cell_settings);
 		return $this->_displayFieldSettings($cell_settings, $this->addon_id);
 	}
 
@@ -334,7 +334,7 @@ JS;
 	 * @return array Label and form inputs
 	 */
 	public function display_var_settings($var_settings) {
-		$var_settings = $this->_mergeRecursive($this->_defaultFieldSettings(), $var_settings);
+		// $var_settings = $this->_mergeRecursive($this->_defaultFieldSettings(), $var_settings);
 		return $this->_displayFieldSettings($var_settings);
 	}
 
@@ -494,7 +494,7 @@ JS;
 		if(!isset($this->EE->cache[__CLASS__]['resources_loaded'])) {
 			$theme_url = $this->_getThemeUrl();
 			$this->EE->cp->add_to_head("<link rel='stylesheet' href='{$theme_url}/styles/custom_field.css' type='text/css' media='screen' charset='utf-8' />");
-			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/jquery-nsmPhotoTags.js' type='text/javascript' charset='utf-8'></script>");
+			$this->EE->cp->add_to_foot("<script src='{$theme_url}/scripts/jquery-nsmInteractiveGallery.js' type='text/javascript' charset='utf-8'></script>");
 
 			$this->EE->cache[__CLASS__]['resources_loaded'] = true;
 		}

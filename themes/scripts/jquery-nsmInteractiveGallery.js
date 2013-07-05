@@ -45,6 +45,7 @@
 		},
 
 		_getCanvasImageUrl: function(src_image_field_id) {
+			console.log("input[name='field_id_"+(src_image_field_id)+"_hidden_dir']");
 			var upload_dir_id = $("input[name='field_id_"+(src_image_field_id)+"_hidden_dir']").val();
 			var upload_dir = EE.upload_directories[upload_dir_id]['url'];
 			var image_name = $("input[name='field_id_"+(src_image_field_id)+"_hidden']").val();

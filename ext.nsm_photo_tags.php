@@ -199,6 +199,8 @@ class Nsm_photo_tags_ext
 
 		$EE =& get_instance();
 		$EE->load->library($this->addon_id."_helper");
+		$EE->load->model('channel_model'); 
+		$EE->load->model("field_model");
 
 		$sorted_fields = array();
 
@@ -207,9 +209,7 @@ class Nsm_photo_tags_ext
 			'input_prefix' => __CLASS__."[channel_data_map]",
 			'data_map' => $data_map
 		);
-
 		$vars['channels'] = $EE->channel_model->get_channels()->result();
-		$EE->load->model("field_model");
 		$field_query = $EE->db->query("SELECT 
 											w.channel_id as channel_id, 
 											wf.group_id as group_id, 
