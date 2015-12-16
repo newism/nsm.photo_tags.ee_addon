@@ -545,10 +545,16 @@ class Nsm_photo_tags_ext
 	private function _saveSettingsToDatabase($settings) {
 
 		$EE =& get_instance();
-		$EE->load->library('javascript');
+
+		if (version_compare(APP_VER, '2.6', '<') OR !function_exists('json_encode')) {
+			$EE->load->library('javascript');
+			$jsonSettings = $EE->javascript->generate_json($settings, true),
+		} else {
+			$jsonSettings = json_encode($settings);
+		}
 
 		$data = array(
-			'settings'	=> $EE->javascript->generate_json($settings, true),
+			'settings'	=> $jsonSettings,
 			'addon_id'	=> $this->addon_id,
 			'site_id'	=> SITE_ID
 		);
