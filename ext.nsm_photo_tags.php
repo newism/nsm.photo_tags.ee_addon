@@ -548,7 +548,7 @@ class Nsm_photo_tags_ext
 
 		if (version_compare(APP_VER, '2.6', '<') OR !function_exists('json_encode')) {
 			$EE->load->library('javascript');
-			$jsonSettings = $EE->javascript->generate_json($settings, true),
+			$jsonSettings = $EE->javascript->generate_json($settings, true);
 		} else {
 			$jsonSettings = json_encode($settings);
 		}
